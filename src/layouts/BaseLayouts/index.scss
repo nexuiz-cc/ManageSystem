@@ -2,12 +2,13 @@
     color: #ffffff;
     background-color: #001529;
     position: relative;
-    width: 200px;
-    height: 60px;
-    top: 2px;
-    left: -48px;
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    left: -35px;
     color: #fff;
-    font-size: 16px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   .site-layout-background {
@@ -19,4 +20,21 @@
     position: relative;
     top:12px;
     left: 20px;
+  }
+
+  .span{
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    top: -1px;
+    left: -15px;
+  }
+
+  .icon{
+    color: #fff;
+    font-size: 40px;
+    position: relative;
+    top: 2px;
+    left: -35px;
   }

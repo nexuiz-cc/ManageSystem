@@ -1,39 +1,39 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
+import Auth from "./Auth";
 
-const Login = lazy(() => import("../pages/Login"));
+//假路由数据
+import { adminRoutes, defaultRoutes } from "./routes";
+
 const PageNotFound = lazy(() => import("../pages/PageNotFound"));
 const BaseLayouts = lazy(() => import("../layouts/BaseLayouts"));
-const DashBorad = lazy(() => import("../pages/admin/DashBoard"));
-const ProductEdit = lazy(() => import("../pages/admin/products/ProductEdit"));
-const ProductList = lazy(() => import("../pages/admin/products/ProductList"));
-const Notices = lazy(() => import("../pages/admin/Notices"));
 
-const RouterConfig = () => {
+const RouterConfig = (props) => {
+  //路由结构
   let routes = [
     {
       path: "/",
       element: <BaseLayouts />,
       children: [
-        { path: "admin/dashboard", element: <DashBorad /> },
-        { path: "admin/notices", element: <Notices /> },
-        { path: "admin/product-list", element: <ProductList /> },
-        { path: "admin/product-list/:id", element: <ProductEdit /> },
-        { index: true, element: <Navigate to="/admin/dashboard" /> },
+        ...adminRoutes,
         { path: "admin", element: <Navigate to="/admin/dashboard" /> },
+        { index: true, element: <Navigate to="/admin/dashboard" /> },
         { path: "*", element: <PageNotFound /> },
       ],
     },
-    { path: "/login", element: <Login /> },
+    ...defaultRoutes,
     { path: "*", element: <PageNotFound /> },
   ];
 
   let Routes = () => useRoutes(routes);
+
   return (
     <BrowserRouter>
-      <Suspense fallback={<>loading...</>}>
-        {routes.length > 0 && <Routes />}
-      </Suspense>
+      <Auth>
+        <Suspense fallback={<>loading....</>}>
+          {routes.length > 0 && <Routes />}
+        </Suspense>
+      </Auth>
     </BrowserRouter>
   );
 };

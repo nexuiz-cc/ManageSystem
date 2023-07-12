@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import RouterConfig from './routes/RouterConfig'
 import AntdConfig from './layouts/AntdConfig';
+import store from './Store';
+import { Provider } from 'react-redux'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <AntdConfig>
     < RouterConfig/>
     </AntdConfig>
+    </Provider>
   </React.StrictMode>
 );
 
