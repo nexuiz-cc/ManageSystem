@@ -33,13 +33,7 @@ const Login = (props) => {
             onFinish={onFinish}
           >
             <Form.Item
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your Username!",
-                },
-              ]}
+              name="username"   rules={[{   required: true,   message: "Please input your Username!", }, ]}
             >
               <div className="inputbox">
                 <Input prefix={<UserOutlined className="site-form-item-icon" />}  />
