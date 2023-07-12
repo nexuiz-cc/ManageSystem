@@ -1,15 +1,185 @@
+body {
+  background-color: #18122b;
+}
 .login-form {
-    width: 300px;
-  }
-  .login-form-forgot {
-    float: right;
-  }
-  .login-form-button {
-    width: 100%;
-  }
+  width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
 
-  .warpper{
-    display: flex;
-    justify-content: center;
-    margin-top: 15%;
+.inputbox input {
+  position: relative;
+  padding: 20px 10px 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #23242a;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+}
+
+.inputbox span {
+  position: relative;
+  left: 0;
+  padding: 20px 10px 10px;
+  font-size: 1rem;
+  color: #8f8f8f;
+  pointer-events: none;
+  letter-spacing: 0.05rem;
+  transition: 0.5s;
+}
+
+.fff {
+  color: #fff;
+}
+.warpper {
+  background-color: #1c1c1c;
+  margin-left: 1%;
+  position: relative;
+  margin-top: 1%;
+  width: 440px;
+  height: 390px;
+  z-index: 9;
+  border-radius: 8px;
+}
+.warpper2 {
+  position: absolute;
+  margin-top: 10%;
+  margin-left: 15%;
+  width: 300px;
+  height: 300px;
+  z-index: 10;
+  background-color: #1c1c1c;
+}
+.box {
+  background-color: #1c1c1c;
+  width: 450px;
+  height: 400px;
+  position: absolute;
+  margin-left: 40%;
+  margin-top: 10%;
+  z-index: 8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 600px;
+  height: 500px;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+  animation: animate 4s linear infinite;
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 600px;
+  height: 500px;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg, transparent, #df3308, #df3308);
+  animation: animate 4s linear infinite;
+  animation-delay: 2s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#register {
+  display: none;
+  width: 300px;
+}
+.registerNow {
+  padding-top: 15px;
+  padding-left: 55px;
+}
+
+.registerbtn {
+  position: relative;
+  left: -560px;
+  width: 200px;
+  top: 130px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  text-decoration: solid;
+  background-color: #ff6666;
+}
+
+.reguser {
+  position: relative;
+  left: 0px;
+  width: 300px;
+}
+.regpass {
+  position: relative;
+  top: 65px;
+  left: -300px;
+  width: 300px;
+}
+.regbtn {
+  margin-left: 15px;
+}
+$ANIMATION_DURATION: 0.7s;
+
+// Slide Down
+@-webkit-keyframes slideDown {
+  0% {
+    -webkit-transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    -webkit-transform: none;
+  }
+}
+@-moz-keyframes slideDown {
+  0% {
+    -moz-transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    -moz-transform: none;
+  }
+}
+@-o-keyframes slideDown {
+  0% {
+    -o-transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    -o-transform: none;
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.u--slideDown {
+  -webkit-animation: slideDown $ANIMATION_DURATION;
+  -moz-animation: slideDown $ANIMATION_DURATION;
+  -o-animation: slideDown $ANIMATION_DURATION;
+  animation: slideDown $ANIMATION_DURATION;
+}
+
+#password_help {
+  position: relative;
+  top: 65px;
+  right: 300px;
+}
