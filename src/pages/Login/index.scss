@@ -1,8 +1,21 @@
 body {
-  background-color: #18122b;
+  background-color: #191825;
 }
 .login-form {
   width: 300px;
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form h2 {
+  color: #45f3ff;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1rem;
 }
 .login-form-forgot {
   float: right;
@@ -10,29 +23,56 @@ body {
 .login-form-button {
   width: 100%;
 }
+.login-form-button:hover {
+  color: #fff;
+  background-color: #a2a3a3!important;
+}
 
-.inputbox input {
+.inputbox {
+  width: 300px;
+  margin-top: -5px;
+}
+
+
+.inputbox input{
+  display: flex;
   position: relative;
+  width: 100%;
   padding: 20px 10px 10px;
   background: transparent;
   border: none;
+  color: #b9b8b8;
   outline: none;
-  color: #23242a;
   font-size: 1rem;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.1rem;
 }
 
+
 .inputbox span {
-  position: relative;
+  position: absolute;
   left: 0;
-  padding: 20px 10px 10px;
+  width: 100%;
+  top:17px;
   font-size: 1rem;
   color: #8f8f8f;
   pointer-events: none;
   letter-spacing: 0.05rem;
   transition: 0.5s;
 }
+.inputbox i{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #45f3ff;
+}
 
+.inputbox input:focus ~span{
+  color: #45f3ff;
+  transform: translateY(-25px);
+  font-size: 0.75rem;
+}
 .fff {
   color: #fff;
 }
@@ -42,26 +82,26 @@ body {
   position: relative;
   margin-top: 1%;
   width: 440px;
-  height: 390px;
+  height: 470px;
   z-index: 9;
   border-radius: 8px;
 }
 .warpper2 {
   position: absolute;
-  margin-top: 10%;
+  margin-top: 15%;
   margin-left: 15%;
   width: 300px;
-  height: 300px;
+  height: 30px;
   z-index: 10;
   background-color: #1c1c1c;
 }
 .box {
-  background-color: #1c1c1c;
+  background-color: #2D4356;
   width: 450px;
-  height: 400px;
+  height: 480px;
   position: absolute;
-  margin-left: 40%;
-  margin-top: 10%;
+  margin-left: 38%;
+  margin-top: 6%;
   z-index: 8;
   border-radius: 8px;
   overflow: hidden;
@@ -75,7 +115,7 @@ body {
   width: 600px;
   height: 500px;
   transform-origin: bottom right;
-  background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+  background: linear-gradient(0deg, transparent, #97FEED, #78C1F3);
   animation: animate 4s linear infinite;
 }
 
@@ -87,7 +127,7 @@ body {
   width: 600px;
   height: 500px;
   transform-origin: bottom right;
-  background: linear-gradient(0deg, transparent, #df3308, #df3308);
+  background: linear-gradient(0deg, transparent, #FFD93D, #F2CD5C);
   animation: animate 4s linear infinite;
   animation-delay: 2s;
 }
@@ -103,7 +143,9 @@ body {
 
 #register {
   display: none;
+  position: relative;
   width: 300px;
+  top:400px;
 }
 .registerNow {
   padding-top: 15px;
@@ -112,13 +154,22 @@ body {
 
 .registerbtn {
   position: relative;
-  left: -560px;
-  width: 200px;
-  top: 130px;
+  left: 40px;
+  display: flex;
+  width: 210px;
+  top: 20px;
+  font-size: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding-left: 75px;
   text-decoration: solid;
-  background-color: #ff6666;
+  background-color: #F1C93B;
+  color: #18122b!important;
+}
+.registerbtn:hover{
+  color: #18122b!important;
+  background-color: #FBD85D!important;
 }
 
 .reguser {
@@ -126,12 +177,7 @@ body {
   left: 0px;
   width: 300px;
 }
-.regpass {
-  position: relative;
-  top: 65px;
-  left: -300px;
-  width: 300px;
-}
+
 .regbtn {
   margin-left: 15px;
 }
