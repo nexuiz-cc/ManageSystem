@@ -3,13 +3,18 @@
         "Borad",
         "dashborad",
         "errmsg",
+        "inputbox",
         "managesystem",
+        "onregister",
+        "passspan",
+        "Popconfirm",
         "reduxjs",
         "regbtn",
         "registerbtn",
         "regpass",
         "reguser",
         "Sider",
+        "userspan",
         "warpper"
     ]
 }

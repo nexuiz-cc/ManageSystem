@@ -1,3 +1,6 @@
+$ANIMATION_DURATION: 0.7s;
+$NeonGreen:#45f3ff;
+
 body {
   background-color: #191825;
 }
@@ -12,7 +15,7 @@ body {
 }
 
 .login-form h2 {
-  color: #45f3ff;
+  color: $NeonGreen;
   font-weight: 500;
   text-align: center;
   letter-spacing: 0.1rem;
@@ -62,11 +65,11 @@ body {
   bottom: 0;
   width: 100%;
   height: 2px;
-  background-color: #45f3ff;
+  background-color: $NeonGreen;
 }
 
 .inputbox input:focus ~span{
-  color: #45f3ff;
+  color: $NeonGreen;
   transform: translateY(-25px);
   font-size: 0.75rem;
 }
@@ -145,8 +148,8 @@ body {
   top:400px;
 }
 .registerNow {
-  padding-top: 15px;
-  padding-left: 55px;
+  padding-top: 10px;
+  padding-left: 80px;
 }
 
 .registerbtn {
@@ -176,9 +179,19 @@ body {
 }
 
 .regbtn {
-  margin-left: 15px;
+  position: relative;
+  left: 10px;
+  top:10px;
+  background-color: #1677FF;
+  color: #fff;
+  border: none;
+}.regbtn:hover{
+  border: #fff;
+  color: #fff!important;
+  background-color: #1677FF;
 }
-$ANIMATION_DURATION: 0.7s;
+
+
 
 // Slide Down
 @-webkit-keyframes slideDown {
@@ -228,13 +241,13 @@ $ANIMATION_DURATION: 0.7s;
 }
 
 .valUserSpan{
-  color: #45f3ff!important;
+  color: $NeonGreen!important;
   transform: translateY(-25px)!important;
   font-size: 0.75rem!important;
 }
 
 .valPassSpan{
-  color: #45f3ff!important;
+  color: $NeonGreen!important;
   transform: translateY(-25px)!important;
   font-size: 0.75rem!important;
 }
