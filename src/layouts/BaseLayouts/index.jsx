@@ -1,13 +1,19 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import "./index.scss";
 import React from "react";
-
-import { Breadcrumb, Col, Layout, Menu, Row } from "antd";
+import { DownOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  Breadcrumb,
+  Col,
+  Layout,
+  Menu,
+  Row,
+  Dropdown,
+  Space,
+  Avatar,
+} from "antd";
 import { useState } from "react";
 import { adminRoutes } from "../../routes/routes";
-
-import {  AppstoreOutlined} from '@ant-design/icons';
-import { Space } from 'antd';
 const { Header, Content, Sider, Footer } = Layout;
 
 //生成一条菜单结构
@@ -88,6 +94,29 @@ const BaseLayouts = (props) => {
     // console.log("/" + keyPath.reverse().join("/"));
     navigate("/" + keyPath.reverse().join("/"));
   };
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: "admin/notices",
+          label: "通知中心",
+          icon: <SmileOutlined />,
+        },
+        {
+          key: "login",
+          danger: true,
+          label: "退出登录",
+          icon: <SmileOutlined />,
+        },
+      ]}
+      onClick={({ key, keyPath }) => {
+        if (key === "login") {
+          //清除token
+        }
+        onMenuSelect({ keyPath });
+      }}
+    />
+  );
 
   return (
     <Layout style={{ paddingTop: 74 }}>
@@ -97,11 +126,27 @@ const BaseLayouts = (props) => {
       >
         <Row>
           <Col flex={10}>
-            <Space> <AppstoreOutlined  className="icon"/></Space>
-            <span className="span">ExampleText</span>
+            <img
+              className="logo"
+              alt="logo"
+              src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+            />
           </Col>
           <Col>
-            <span style={{ color: "#fff" }}>呵呵哒</span>
+            <Dropdown overlay={menu}>
+              <a href="#user" onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <Avatar
+                    style={{
+                      backgroundColor: "#1da57a",
+                    }}
+                    icon={<UserOutlined />}
+                  />
+                  <span style={{ color: "#fff" }}>管理员</span>
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
           </Col>
         </Row>
       </Header>
@@ -151,11 +196,10 @@ const BaseLayouts = (props) => {
             style={{
               padding: 24,
               margin: 0,
-              minHeight: 656,
+              minHeight: 280,
             }}
           >
             <Outlet></Outlet>
-            
           </Content>
           <Footer>footer</Footer>
         </Layout>
