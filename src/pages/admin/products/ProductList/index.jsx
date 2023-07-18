@@ -1,24 +1,25 @@
+/* eslint-disable no-underscore-dangle */
 import './index.scss';
 import {
-  Button, Table, Space, Popconfirm, Card,
+  Button, Table, Space, Popconfirm, Card, Switch,
 } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { findProductsList } from '../../../../services/products';
+import {
+  delProductOne,
+  findProductsList,
+  modifyProductOne,
+} from '../../../../services/products';
 import serverUrl from '../../../../config';
 
-const ProductList = () => {
+const ProductList = (props) => {
   const navigate = useNavigate();
+
   const [dataSource, setDataSource] = useState([]);
   const [total, setTotal] = useState(0); // 总条数
 
   const defaultPer = 3; // 一页显示3条
-  const confirm = (e) => {
 
-  };
-  const cancel = (e) => {
-
-  };
   const loadData = (page, per = defaultPer) => {
     findProductsList(page, per).then((res) => {
       setDataSource(res.products);
@@ -27,6 +28,23 @@ const ProductList = () => {
   };
 
   useEffect(loadData, []);
+  const onChange = async (_id, onSale, index) => {
+    // 请求 修改一条库数据， 里面的onSale, 再修改本地数据
+    await modifyProductOne(_id, { onSale: !onSale });
+    const tmpArr = [...dataSource];
+    tmpArr.splice(index, 1, { ...tmpArr[index], onSale: !onSale });
+    setDataSource(tmpArr);
+  };
+
+  const confirm = async (_id, onSale, index) => {
+    // 删除一条商品
+    await delProductOne(_id);
+    const tmpArr = [...dataSource];
+    tmpArr.splice(index, 1);
+    setDataSource(tmpArr);
+  };
+  const cancel = (e) => {
+  };
 
   const columns = [
     {
@@ -56,7 +74,12 @@ const ProductList = () => {
     {
       title: '状态',
       dataIndex: 'price',
-      render: (text, row, index) => (row.onSale ? '已上架' : '已下架'),
+      render: (text, row, index) => (
+        <Switch
+          defaultChecked={row.onSale}
+          onChange={() => onChange(row._id, row.onSale, index)}
+        />
+      ),
     },
     {
       title: '操作',
@@ -64,14 +87,13 @@ const ProductList = () => {
         <Space>
           <Button
             type="default"
-            // eslint-disable-next-line no-underscore-dangle
             onClick={() => navigate(`/admin/product-edit/${row._id}`)}
           >
             修改
           </Button>
           <Popconfirm
             title="确认要删除么?"
-            onConfirm={confirm}
+            onConfirm={() => confirm(row._id, row.onSale, index)}
             onCancel={cancel}
             okText="确认"
             cancelText="取消"
@@ -98,7 +120,6 @@ const ProductList = () => {
       <Table
         dataSource={dataSource}
         columns={columns}
-        // eslint-disable-next-line no-underscore-dangle
         rowKey={(row) => row._id}
         pagination={{
           onChange: loadData,
