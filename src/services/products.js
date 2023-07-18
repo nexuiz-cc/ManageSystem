@@ -1,16 +1,16 @@
-import instance from "../utils/request";
+import instance from '../utils/request';
 
-//获取商品列表
+// 获取商品列表
 export function findProductsList(page = 1, per = 2) {
-  return instance.get("/api/v1/admin/products", { params: { page, per } });
+  return instance.get('/api/v1/admin/products', { params: { page, per } });
 }
 
-//获取商品的详情 id
+// 获取商品的详情 id
 export function findProductDetail(id) {
-  return instance.get("/api/v1/admin/products/" + id);
+  return instance.get(`/api/v1/admin/products/${id}`);
 }
 
-//添加商品
+// 添加商品
 /**
  *
  * @param {
@@ -24,7 +24,7 @@ export function findProductDetail(id) {
  * @returns
  */
 export function createProduct(data) {
-  return instance.post("/api/v1/admin/products", {
+  return instance.post('/api/v1/admin/products', {
     data,
   });
 }
@@ -42,12 +42,12 @@ export function createProduct(data) {
  * } data
  * @returns
  */
-//修改一条商品
+// 修改一条商品
 export function modifyProductOne(id, data) {
-  return instance.put("/api/v1/admin/products/" + id, { data });
+  return instance.put(`/api/v1/admin/products/${id}`, { data });
 }
 
-//删除一条商品
+// 删除一条商品
 export function delProductOne(id) {
-  return instance.delete("/api/v1/admin/products" + id);
+  return instance.delete(`/api/v1/admin/products${id}`);
 }
