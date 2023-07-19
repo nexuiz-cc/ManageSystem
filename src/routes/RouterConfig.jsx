@@ -16,7 +16,7 @@ const RouterConfig = (props) => {
       element: <BaseLayouts />,
       children: [
         ...adminRoutes,
-        { path: 'admin', element: <Navigate to="/admin/dashboard" /> },
+        { path: 'login', element: <Navigate to="/login/dashboard" /> },
         { index: true, element: <Navigate to="/admin/dashboard" /> },
         { path: '*', element: <PageNotFound /> },
       ],

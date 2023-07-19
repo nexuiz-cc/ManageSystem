@@ -5,7 +5,7 @@ import {
   Button, Checkbox, Form, message,
 } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { loginApi } from '../../services/auth';
+import loginApi from '../../services/auth';
 import { setToKen } from '../../utils/localStorage';
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
     const res = await loginApi({ userName, password });
     if (res.code === 'success') {
       setToKen(res.token);
-      navigate('/');
+      navigate('/admin/dashboard');
     } else {
       message.info('登录失败，请重试');
     }

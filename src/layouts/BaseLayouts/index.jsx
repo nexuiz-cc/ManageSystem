@@ -1,7 +1,10 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import "./index.scss";
-import React from "react";
-import { DownOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
+/* eslint-disable no-shadow */
+/* eslint-disable no-tabs */
+/* eslint-disable consistent-return */
+import { Outlet, useNavigate } from 'react-router-dom';
+import './index.scss';
+import React, { useState } from 'react';
+import { DownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
 import {
   Breadcrumb,
   Col,
@@ -11,16 +14,21 @@ import {
   Dropdown,
   Space,
   Avatar,
-} from "antd";
-import { useState } from "react";
-import { adminRoutes } from "../../routes/routes";
-const { Header, Content, Sider, Footer } = Layout;
+} from 'antd';
 
-//生成一条菜单结构
-function getItem({ label, key, icon, children, disabled }) {
+import { adminRoutes } from '../../routes/routes';
+
+const {
+  Header, Content, Sider, Footer,
+} = Layout;
+
+// 生成一条菜单结构
+function getItem({
+  label, key, icon, children, disabled,
+}) {
   if (!disabled) {
     return {
-      key, //对应path
+      key, // 对应path
       icon,
       children,
       label,
@@ -28,18 +36,17 @@ function getItem({ label, key, icon, children, disabled }) {
     };
   }
 }
-const getRoutes = (arr) =>
-  arr.map(({ label, path, icon, disabled, children }) =>
-    getItem({
-      label,
-      key: path,
-      icon,
-      disabled,
-      children: children && getRoutes(children),
-    })
-  );
+const getRoutes = (arr) => arr.map(({
+  label, path, icon, disabled, children,
+}) => getItem({
+  label,
+  key: path,
+  icon,
+  disabled,
+  children: children && getRoutes(children),
+}));
 // 菜单数据	ItemType[]
-let items = getRoutes(adminRoutes);
+const items = getRoutes(adminRoutes);
 // const items = [
 //   getItem("Navigation One", "sub1", <MailOutlined />, [
 //     getItem("Option 1", "1"),
@@ -67,18 +74,18 @@ let items = getRoutes(adminRoutes);
 
 // const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
 const rootSubmenuKeys = items
-  .filter((item) => typeof item !== "undefined")
+  .filter((item) => typeof item !== 'undefined')
   .map((item) => item.key);
 // const rootSubmenuKeys = ["admin/xxx", "sub2", "sub4"];
 
 const BaseLayouts = (props) => {
-  const [collapsed, setCollapsed] = useState(false); //收起菜单状态
-  const [marginLeft, setMarginLeft] = useState(210); //收起菜单状态
+  const [collapsed, setCollapsed] = useState(false); // 收起菜单状态
+  const [marginLeft, setMarginLeft] = useState(210); // 收起菜单状态
 
-  const [openKeys, setOpenKeys] = useState([]); //当前展开的 SubMenu 菜单项 key 数组	string[]
+  const [openKeys, setOpenKeys] = useState([]); // 当前展开的 SubMenu 菜单项 key 数组	string[]
 
-  let navigate = useNavigate();
-  //控制一次展开一个菜单
+  const navigate = useNavigate();
+  // 控制一次展开一个菜单
   const onOpenChange = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -88,30 +95,30 @@ const BaseLayouts = (props) => {
     }
   };
 
-  //跳转
+  // 跳转
   const onMenuSelect = ({ keyPath }) => {
     // console.log(keyPath); //['b-2-2', 'b-2', 'admin/b'] => /admin/b/b-2/b-2-2
     // console.log("/" + keyPath.reverse().join("/"));
-    navigate("/" + keyPath.reverse().join("/"));
+    navigate(`/${keyPath.reverse().join('/')}`);
   };
   const menu = (
     <Menu
       items={[
         {
-          key: "admin/notices",
-          label: "通知中心",
+          key: 'admin/notices',
+          label: '通知中心',
           icon: <SmileOutlined />,
         },
         {
-          key: "login",
+          key: 'logout',
           danger: true,
-          label: "退出登录",
+          label: '退出登录',
           icon: <SmileOutlined />,
         },
       ]}
       onClick={({ key, keyPath }) => {
-        if (key === "login") {
-          //清除token
+        if (key === 'logout') {
+          console.log('logout');
         }
         onMenuSelect({ keyPath });
       }}
@@ -122,7 +129,9 @@ const BaseLayouts = (props) => {
     <Layout style={{ paddingTop: 74 }}>
       <Header
         className="header"
-        style={{ position: "fixed", zIndex: 1, width: "100%", top: 0 }}
+        style={{
+          position: 'fixed', zIndex: 1, width: '100%', top: 0,
+        }}
       >
         <Row>
           <Col flex={10}>
@@ -138,11 +147,11 @@ const BaseLayouts = (props) => {
                 <Space>
                   <Avatar
                     style={{
-                      backgroundColor: "#1da57a",
+                      backgroundColor: '#1da57a',
                     }}
                     icon={<UserOutlined />}
                   />
-                  <span style={{ color: "#fff" }}>管理员</span>
+                  <span style={{ color: '#fff' }}>管理员</span>
                   <DownOutlined />
                 </Space>
               </a>
@@ -155,6 +164,7 @@ const BaseLayouts = (props) => {
           collapsible
           collapsed={collapsed}
           onCollapse={(collapsed) => {
+            // eslint-disable-next-line no-unused-expressions
             collapsed ? setMarginLeft(80 + 10) : setMarginLeft(200 + 10);
             setCollapsed(collapsed);
           }}
@@ -163,8 +173,8 @@ const BaseLayouts = (props) => {
           breakpoint="md"
           className="site-layout-background"
           style={{
-            height: "100vh",
-            position: "fixed",
+            height: '100vh',
+            position: 'fixed',
             left: 0,
             top: 74,
           }}
@@ -179,12 +189,12 @@ const BaseLayouts = (props) => {
         </Sider>
         <Layout
           style={{
-            padding: "0 24px 24px",
+            padding: '0 24px 24px',
           }}
         >
           <Breadcrumb
             style={{
-              margin: "16px 0",
+              margin: '16px 0',
             }}
           >
             <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -199,7 +209,7 @@ const BaseLayouts = (props) => {
               minHeight: 280,
             }}
           >
-            <Outlet></Outlet>
+            <Outlet />
           </Content>
           <Footer>footer</Footer>
         </Layout>

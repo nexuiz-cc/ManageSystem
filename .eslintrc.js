@@ -13,7 +13,6 @@ module.exports = {
     'arrow-body-style': ['off'],
     'react/no-unknown-property': ['error', { ignore: ['prefix'] }],
     'no-unused-vars': ['off'],
-  },
-  globals: {
+    'no-console': ['off'],
   },
 };

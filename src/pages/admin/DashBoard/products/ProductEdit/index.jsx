@@ -1,11 +1,15 @@
-import { Button, Card, Form, Input, InputNumber } from "antd";
-import "./index.less";
+import React from 'react';
+import {
+  Button, Card, Form, Input, InputNumber,
+} from 'antd';
+import './index.scss';
+
 const ProductEdit = (props) => {
   const onFinish = (values) => {
-    console.log("ok", values);
+    console.log('ok', values);
   };
   const onFinishFailed = (errorInfo) => {
-    console.log("no", errorInfo);
+    console.log('no', errorInfo);
   };
   return (
     <Card title="商品编辑" bordered={false}>
@@ -13,7 +17,7 @@ const ProductEdit = (props) => {
         <Form.Item
           label="名字"
           name="name"
-          rules={[{ required: true, message: "请输入商品名称" }]}
+          rules={[{ required: true, message: '请输入商品名称' }]}
         >
           <Input />
         </Form.Item>
@@ -21,7 +25,7 @@ const ProductEdit = (props) => {
           label="价格"
           name="price"
           rules={[
-            { required: true, type: "number", message: "请输入商品名称" },
+            { required: true, type: 'number', message: '请输入商品名称' },
           ]}
         >
           <InputNumber />
@@ -33,12 +37,12 @@ const ProductEdit = (props) => {
           rules={[
             {
               required: true,
-              type: "number",
+              type: 'number',
               validator: (rules, value) => {
                 if (value >= 0) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error("总不能倒贴钱"));
+                return Promise.reject(new Error('总不能倒贴钱'));
               },
             },
           ]}
@@ -52,18 +56,18 @@ const ProductEdit = (props) => {
           rules={[
             {
               required: true,
-              type: "number",
+              type: 'number',
             },
             ({ getFieldValue }) => ({
               validator: (rules, value) => {
                 if (
-                  value >= 0 &&
-                  getFieldValue("price2") + getFieldValue("price") < value
+                  value >= 0
+                  && getFieldValue('price2') + getFieldValue('price') < value
                 ) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  new Error("不能小于0，不能少于上方价格之和")
+                  new Error('不能小于0，不能少于上方价格之和'),
                 );
               },
             }),

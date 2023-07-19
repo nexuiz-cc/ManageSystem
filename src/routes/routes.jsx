@@ -6,6 +6,7 @@ const DashBoard = lazy(() => import('../pages/admin/DashBoard'));
 const Notices = lazy(() => import('../pages/admin/Notices'));
 const ProductList = lazy(() => import('../pages/admin/products/ProductList'));
 const ProductEdit = lazy(() => import('../pages/admin/products/ProductEdit'));
+const ReduxDemo = lazy(() => import('../pages/admin/ReducerDemo/ReduxDemo'));
 
 // 默认路由
 const defaultRoutes = [{ path: '/login', element: <Login /> }];
@@ -118,6 +119,13 @@ const adminRoutes = [
         label: 'b-3',
       },
     ],
+  },
+  {
+    path: 'admin/c',
+    element: <ReduxDemo />,
+    disabled: false,
+    icon: <AppstoreAddOutlined />,
+    label: 'c',
   },
 ];
 
