@@ -11,12 +11,10 @@ function clearToken() {
 }
 
 function isLogin() {
-  let Login = false;
   if (getToken()) {
-    Login = true;
-    return Login;
+    return true;
   }
-  return isLogin;
+  return false;
 }
 
 export {

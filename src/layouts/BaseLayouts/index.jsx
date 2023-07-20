@@ -15,7 +15,7 @@ import {
   Space,
   Avatar,
 } from 'antd';
-
+import { setToKen } from '../../utils/localStorage';
 import { adminRoutes } from '../../routes/routes';
 
 const {
@@ -94,7 +94,6 @@ const BaseLayouts = (props) => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
-
   // 跳转
   const onMenuSelect = ({ keyPath }) => {
     // console.log(keyPath); //['b-2-2', 'b-2', 'admin/b'] => /admin/b/b-2/b-2-2
@@ -110,15 +109,15 @@ const BaseLayouts = (props) => {
           icon: <SmileOutlined />,
         },
         {
-          key: 'logout',
+          key: 'login',
           danger: true,
           label: '退出登录',
           icon: <SmileOutlined />,
         },
       ]}
       onClick={({ key, keyPath }) => {
-        if (key === 'logout') {
-          console.log('logout');
+        if (key === 'login') {
+          setToKen('');
         }
         onMenuSelect({ keyPath });
       }}

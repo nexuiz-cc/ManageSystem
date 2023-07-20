@@ -6,7 +6,7 @@ import { decrement, increment } from '../../../store/actions/count';
 const A = ({ count, dispatch }) => {
   return (
     <>
-      <h3>A</h3>
+      <h3>Component A</h3>
       <div>{count}</div>
       <button type="button" onClick={() => dispatch(increment(2))}>+</button>
       <button type="button" onClick={() => dispatch(decrement(3))}>-</button>

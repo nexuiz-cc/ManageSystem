@@ -1,5 +1,5 @@
-import './index.scss';
 import React from 'react';
+
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import {
   Button, Checkbox, Form, message,
@@ -7,6 +7,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import loginApi from '../../services/auth';
 import { setToKen } from '../../utils/localStorage';
+import './login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
