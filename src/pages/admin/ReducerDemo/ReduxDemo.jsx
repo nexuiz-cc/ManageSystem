@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import A from './A';
-import { add, asyncAdd } from '../../../store/actions/list';
+import { add, asyncAdd, publicFunc } from '../../../store/actions/list';
 
 // eslint-disable-next-line react/prop-types
 const ReduxDemo = ({ list, dispatch }) => {
@@ -11,6 +11,7 @@ const ReduxDemo = ({ list, dispatch }) => {
       <div>{list}</div>
       <button type="button" onClick={() => dispatch(add('ddd'))}>增</button>
       <button type="button" onClick={() => dispatch(asyncAdd())}>异步增</button>
+      <button type="button" onClick={() => dispatch(publicFunc())}>publicFunc</button>
       <A />
     </>
   );

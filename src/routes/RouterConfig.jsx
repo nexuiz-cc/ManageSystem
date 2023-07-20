@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, useRoutes } from 'react-router-dom';
-import Auth from './Auth';
+import AuthRouter from './AuthRouter';
 
 // 假路由数据
 import { adminRoutes, defaultRoutes } from './routes';
@@ -14,6 +14,7 @@ const RouterConfig = (props) => {
     {
       path: '/',
       element: <BaseLayouts />,
+      auth: true,
       children: [
         ...adminRoutes,
         { path: '/admin/dashboard', element: <Navigate to="/admin/dashboard" /> },
@@ -29,11 +30,11 @@ const RouterConfig = (props) => {
 
   return (
     <BrowserRouter>
-      <Auth>
+      <AuthRouter>
         <Suspense fallback={<>loading....</>}>
           {routes.length > 0 && <Routes />}
         </Suspense>
-      </Auth>
+      </AuthRouter>
     </BrowserRouter>
   );
 };

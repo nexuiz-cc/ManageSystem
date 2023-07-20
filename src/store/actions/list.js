@@ -1,7 +1,8 @@
-import ADD from '../constants/list';
+import { ADD, PUBLICFUNC } from '../constants/list';
 
 // 提取 actions 封装成函数，返回actions
 export const add = (payload) => ({ type: ADD, payload });
+export const publicFunc = (payload) => ({ type: PUBLICFUNC, payload });
 
 export const asyncAdd = () => (dispatch) => {
   // dispatch调用的函数

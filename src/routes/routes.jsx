@@ -9,7 +9,7 @@ const ProductEdit = lazy(() => import('../pages/admin/products/ProductEdit'));
 const ReduxDemo = lazy(() => import('../pages/admin/ReducerDemo/ReduxDemo'));
 
 // 默认路由
-const defaultRoutes = [{ path: '/login', element: <Login /> }];
+const defaultRoutes = [{ path: '/login', auth: false, element: <Login /> }];
 
 // 管理员路由数据
 
@@ -121,11 +121,11 @@ const adminRoutes = [
     ],
   },
   {
-    path: 'admin/c',
+    path: 'admin/reduxDemo',
     element: <ReduxDemo />,
     disabled: false,
     icon: <AppstoreAddOutlined />,
-    label: 'c',
+    label: 'ReduxDemo',
   },
 ];
 

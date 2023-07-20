@@ -11,7 +11,7 @@ function clearToken() {
 }
 
 function isLogin() {
-  if (getToken()) {
+  if (getToken() !== '') {
     return true;
   }
   return false;

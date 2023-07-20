@@ -1,4 +1,4 @@
-import ADD from '../constants/list';
+import { ADD } from '../constants/list';
 // state
 const initState = ['aa', 'bb', 'cc'];
 // eslint-disable-next-line default-param-last

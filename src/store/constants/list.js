@@ -1,2 +1,2 @@
-const ADD = 'ADD';
-export default ADD;
+export const ADD = 'ADD';
+export const PUBLICFUNC = 'PUBLICFUNC';
