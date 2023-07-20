@@ -1,0 +1,18 @@
+.wapper {
+   display: flex;
+   position: relative;
+   top: 25px;
+   left: 50px;
+   background-color: lightgray;
+}
+.wapper .card {
+    margin-right: 50px;
+    width: 400px;
+    background-color: #dcdddd;
+    border-radius: 10px;
+    border: 3px solid white;
+}
+
+body{
+    background-color: lightgray;
+}

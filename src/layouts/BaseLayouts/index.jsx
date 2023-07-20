@@ -189,11 +189,13 @@ const BaseLayouts = (props) => {
         <Layout
           style={{
             padding: '0 24px 24px',
+            background: 'lightgray',
           }}
         >
           <Breadcrumb
             style={{
               margin: '16px 0',
+              background: 'lightgray',
             }}
           >
             <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -210,7 +212,9 @@ const BaseLayouts = (props) => {
           >
             <Outlet />
           </Content>
-          <Footer>footer</Footer>
+          <Footer style={{ background: 'lightgray' }}>
+            footer
+          </Footer>
         </Layout>
       </Layout>
     </Layout>
