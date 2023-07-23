@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import RouterConfig from './routes/RouterConfig';
 import AntdConfig from './layouts/AntdConfig';
 import store from './store/store';
+import './assets/styles/main.css';
+import './assets/styles/responsive.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
