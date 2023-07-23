@@ -72,11 +72,9 @@ const items = getRoutes(adminRoutes);
 
 // 生成根部菜单的keys数据
 
-// const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
 const rootSubmenuKeys = items
   .filter((item) => typeof item !== 'undefined')
   .map((item) => item.key);
-// const rootSubmenuKeys = ["admin/xxx", "sub2", "sub4"];
 
 const BaseLayouts = (props) => {
   const [collapsed, setCollapsed] = useState(false); // 收起菜单状态
@@ -96,8 +94,6 @@ const BaseLayouts = (props) => {
   };
   // 跳转
   const onMenuSelect = ({ keyPath }) => {
-    // console.log(keyPath); //['b-2-2', 'b-2', 'admin/b'] => /admin/b/b-2/b-2-2
-    // console.log("/" + keyPath.reverse().join("/"));
     navigate(`/${keyPath.reverse().join('/')}`);
   };
   const menu = (
