@@ -382,7 +382,7 @@ const Dashboard = () => {
           <Card bordered={false} className="criclebox cardbody h-full">
             <div className="project-ant">
               <div>
-                <Title level={5}>Projects</Title>
+                <Title level={5}>Projects QuickView</Title>
                 <Paragraph className="lastweek">
                   done this month
                   <span className="blue">40%</span>
