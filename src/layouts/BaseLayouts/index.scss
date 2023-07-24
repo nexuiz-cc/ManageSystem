@@ -1,40 +1,44 @@
 .logo {
-    color: #ffffff;
-    background-color: #001529;
-    position: relative;
-    width: 40px;
-    height: 40px;
-    top: 10px;
-    left: -35px;
-    color: #fff;
-    font-size: 12px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .site-layout-background {
-    background:lightgray;
-  }
+  color: #ffffff;
+  background-color: #001529;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  top: 10px;
+  left: -35px;
+  color: #fff;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  .img{
-    width: 40px;
-    position: relative;
-    top:12px;
-    left: 20px;
-  }
+.site-layout-background {
+  background: lightgray;
+}
+.Breadcrumb {
+  margin: 16px 0;
+  background: lightgray;
+  color: black;
+}
+.img {
+  width: 40px;
+  position: relative;
+  top: 12px;
+  left: 20px;
+}
 
-  .span{
-    color: #fff;
-    font-size: 18px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
-    top: -1px;
-    left: -15px;
-  }
+.span {
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  top: -1px;
+  left: -15px;
+}
 
-  .icon{
-    color: #fff;
-    font-size: 40px;
-    position: relative;
-    top: 2px;
-    left: -35px;
-  }
+.icon {
+  color: #fff;
+  font-size: 40px;
+  position: relative;
+  top: 2px;
+  left: -35px;
+}

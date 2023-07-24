@@ -1,0 +1,131 @@
+@mixin confirm($left) {
+  display: flex;
+  position: absolute;
+  margin-bottom: 10px;
+  width: 75px;
+  margin-left: $left;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+}
+.confirmnewbtn {
+  @include confirm(65px);
+  top: 200px;
+}
+.confirmbtn {
+  @include confirm(360px);
+  top: 250px;
+}
+
+.okbtn {
+  display: none;
+}
+
+@mixin cancel($top, $right) {
+  display: flex;
+  top: $top;
+  position: absolute;
+  right: $right;
+  font-size: 14px;
+}
+.cancelnewbtn {
+  @include cancel(200px, 35px);
+}
+
+.cancelbtn {
+  @include cancel(250px, 50px);
+}
+
+.modalIpt {
+  color: rgb(6, 29, 231);
+  width: 220px;
+  height: 25px;
+}
+.modalIpt:focus {
+  outline: none;
+}
+.modalIpt::placeholder {
+  color: #e0e0e0;
+}
+
+.modaltable {
+  width: 400px;
+}
+.modaltr {
+  width: 400px;
+}
+.modalspan {
+  color: blue;
+}
+
+div.gry {
+  margin-top: 20px;
+  margin-left: 30px;
+  display: flexbox;
+  width: 500px;
+  text-align: center;
+  border-collapse: collapse;
+}
+.divTable.gry .divTableCell,
+.divTable.gry .divTableHead {
+  border: 1px solid #000000;
+  padding: 3px 2px;
+}
+.divTableTH {
+  padding: 3px 2px;
+  display: table-cell;
+  background-color: #e0e0e0;
+  border: 1px solid #000000;
+}
+.divTable.gry .divTableBody .divTableCell {
+  font-size: 12px;
+}
+.gry .tableFootStyle {
+  font-size: 12px;
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: #30a2ff !important;
+  align-content: center;
+}
+.ant-table-content {
+  background-color: #ecf9ff;
+}
+
+/* DivTable.com */
+.divTable {
+  display: table;
+  margin-bottom: 60px;
+}
+.divTableRow {
+  display: table-row;
+}
+.divTableHeading {
+  display: table-header-group;
+}
+.divTableCell,
+.divTableHead {
+  display: table-cell;
+}
+.divTableHeading {
+  display: table-header-group;
+}
+.divTableFoot {
+  display: table-footer-group;
+}
+.divTableBody {
+  display: table-row-group;
+}
+
+.confirmtable {
+  margin-bottom: 60px;
+}
+
+.addbtn {
+  display: flex;
+  margin-bottom: 15px;
+  background-color: #f86f03;
+}
+.addbtn:hover {
+  background-color: #ffa41b !important;
+}

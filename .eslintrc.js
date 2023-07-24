@@ -14,5 +14,6 @@ module.exports = {
     'react/no-unknown-property': ['error', { ignore: ['prefix'] }],
     'no-unused-vars': ['off'],
     'no-console': ['off'],
+    'object-shorthand': ['off'],
   },
 };

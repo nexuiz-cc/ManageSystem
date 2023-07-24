@@ -4,7 +4,7 @@ import { AppstoreAddOutlined } from '@ant-design/icons';
 const Login = lazy(() => import('../pages/Login'));
 const DashBoard = lazy(() => import('../pages/admin/DashBoard'));
 const Notices = lazy(() => import('../pages/admin/Notices'));
-const ProductList = lazy(() => import('../pages/admin/products/ProductList'));
+const ProductList = lazy(() => import('../pages/admin/DashBoard/products/ProductList'));
 const ProductEdit = lazy(() => import('../pages/admin/products/ProductEdit'));
 const ReduxDemo = lazy(() => import('../pages/admin/ReducerDemo/ReduxDemo'));
 
@@ -33,14 +33,14 @@ const adminRoutes = [
     element: <ProductList />,
     disabled: false,
     icon: <AppstoreAddOutlined />,
-    label: 'ProductList',
+    label: 'Customer List',
   },
   {
     path: 'admin/product-edit',
     element: <ProductEdit />,
     disabled: true,
     icon: <AppstoreAddOutlined />,
-    label: 'New Product',
+    label: 'New Customer',
     children: [
       {
         path: ':id',

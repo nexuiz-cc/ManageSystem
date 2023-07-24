@@ -1,8 +1,8 @@
 $ANIMATION_DURATION: 0.7s;
-$NeonGreen:#45f3ff;
+$NeonGreen: #45f3ff;
 
 body {
-  background-color: #191825;
+  background-color: #191825 !important;
 }
 .login-form {
   width: 300px;
@@ -27,14 +27,12 @@ body {
   width: 100%;
 }
 
-
 .inputbox {
   width: 300px;
   margin-top: -5px;
 }
 
-
-.inputbox input{
+.inputbox input {
   display: flex;
   position: relative;
   width: 100%;
@@ -47,19 +45,18 @@ body {
   letter-spacing: 0.1rem;
 }
 
-
 .inputbox span {
   position: absolute;
   left: 0;
   width: 100%;
-  top:17px;
+  top: 17px;
   font-size: 1rem;
   color: #8f8f8f;
   pointer-events: none;
   letter-spacing: 0.05rem;
   transition: 0.5s;
 }
-.inputbox i{
+.inputbox i {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -68,7 +65,7 @@ body {
   background-color: $NeonGreen;
 }
 
-.inputbox input:focus ~span{
+.inputbox input:focus ~ span {
   color: $NeonGreen;
   transform: translateY(-25px);
   font-size: 0.75rem;
@@ -96,7 +93,7 @@ body {
   background-color: #1c1c1c;
 }
 .box {
-  background-color: #2D4356;
+  background-color: #2d4356;
   width: 450px;
   height: 480px;
   position: absolute;
@@ -108,26 +105,26 @@ body {
 }
 
 .box::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -50%;
   left: -50%;
   width: 600px;
   height: 500px;
   transform-origin: bottom right;
-  background: linear-gradient(0deg, transparent, #97FEED, #78C1F3);
+  background: linear-gradient(0deg, transparent, #97feed, #78c1f3);
   animation: animate 4s linear infinite;
 }
 
 .box::after {
-  content: "";
+  content: '';
   position: absolute;
   top: -50%;
   left: -50%;
   width: 600px;
   height: 500px;
   transform-origin: bottom right;
-  background: linear-gradient(0deg, transparent, #FFD93D, #F2CD5C);
+  background: linear-gradient(0deg, transparent, #ffd93d, #f2cd5c);
   animation: animate 4s linear infinite;
   animation-delay: 2s;
 }
@@ -145,7 +142,7 @@ body {
   display: none;
   position: relative;
   width: 300px;
-  top:400px;
+  top: 400px;
 }
 .registerNow {
   padding-top: 10px;
@@ -159,17 +156,17 @@ body {
   width: 210px;
   top: 20px;
   font-size: 18px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-items: center;
   align-content: center;
   padding-left: 75px;
   text-decoration: solid;
-  background-color: #F1C93B;
-  color: #18122b!important;
+  background-color: #f1c93b;
+  color: #18122b !important;
 }
-.registerbtn:hover{
-  color: #18122b!important;
-  background-color: #FBD85D!important;
+.registerbtn:hover {
+  color: #18122b !important;
+  background-color: #fbd85d !important;
 }
 
 .reguser {
@@ -181,17 +178,16 @@ body {
 .regbtn {
   position: relative;
   left: 10px;
-  top:10px;
-  background-color: #1677FF;
+  top: 10px;
+  background-color: #1677ff;
   color: #fff;
   border: none;
-}.regbtn:hover{
-  border: #fff;
-  color: #fff!important;
-  background-color: #1677FF;
 }
-
-
+.regbtn:hover {
+  border: #fff;
+  color: #fff !important;
+  background-color: #1677ff;
+}
 
 // Slide Down
 @-webkit-keyframes slideDown {
@@ -240,15 +236,14 @@ body {
   right: 300px;
 }
 
-.valUserSpan{
-  color: $NeonGreen!important;
-  transform: translateY(-25px)!important;
-  font-size: 0.75rem!important;
+.valUserSpan {
+  color: $NeonGreen !important;
+  transform: translateY(-25px) !important;
+  font-size: 0.75rem !important;
 }
 
-.valPassSpan{
-  color: $NeonGreen!important;
-  transform: translateY(-25px)!important;
-  font-size: 0.75rem!important;
+.valPassSpan {
+  color: $NeonGreen !important;
+  transform: translateY(-25px) !important;
+  font-size: 0.75rem !important;
 }
-
