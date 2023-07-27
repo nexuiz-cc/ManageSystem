@@ -6,7 +6,7 @@ import './index.scss';
 import React, { useState } from 'react';
 import { DownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
 import {
-  Breadcrumb, Col, Layout, Menu, Row, Dropdown, Space, Avatar,
+  Breadcrumb, Layout, Menu, Dropdown, Button,
 } from 'antd';
 import { setToKen } from '../../utils/localStorage';
 import { adminRoutes } from '../../routes/routes';
@@ -87,29 +87,24 @@ const BaseLayouts = (props) => {
   const onMenuSelect = ({ keyPath }) => {
     navigate(`/${keyPath.reverse().join('/')}`);
   };
-  const menu = (
-    <Menu
-      items={[
-        {
-          key: 'admin/notices',
-          label: '通知中心',
-          icon: <SmileOutlined />,
-        },
-        {
-          key: 'login',
-          danger: true,
-          label: '退出登录',
-          icon: <SmileOutlined />,
-        },
-      ]}
-      onClick={({ key, keyPath }) => {
-        if (key === 'login') {
-          setToKen('');
-        }
-        onMenuSelect({ keyPath });
-      }}
-    />
-  );
+  const item = [
+    {
+      key: '1',
+      label: (
+        <Link to="/admin/notices">
+          通知中心
+        </Link>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <Link to="/login">
+          Logout
+        </Link>
+      ),
+    },
+  ];
 
   return (
     <Layout style={{ paddingTop: 74 }}>
@@ -122,34 +117,15 @@ const BaseLayouts = (props) => {
           top: 0,
         }}
       >
-        <Row>
-          <Col flex={10}>
-            <img
-              className="logo"
-              alt="logo"
-              src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-            />
-          </Col>
-          <Col>
-            <Dropdown menu={menu}>
-              <a
-                href="#user"
-                onClick={(e) => e.preventDefault()}
-              >
-                <Space>
-                  <Avatar
-                    style={{
-                      backgroundColor: '#1da57a',
-                    }}
-                    icon={<UserOutlined />}
-                  />
-                  <span style={{ color: '#fff' }}>管理员</span>
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
-          </Col>
-        </Row>
+        <Dropdown
+          menu={{ item }}
+          placement="topRight"
+        >
+          <div>
+            <Button>bottom</Button>
+          </div>
+
+        </Dropdown>
       </Header>
       <Layout style={{ marginLeft }}>
         <Sider
@@ -209,6 +185,7 @@ const BaseLayouts = (props) => {
         </Layout>
       </Layout>
     </Layout>
+
   );
 };
 
