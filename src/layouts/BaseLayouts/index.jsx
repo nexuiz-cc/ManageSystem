@@ -156,7 +156,6 @@ const BaseLayouts = (props) => {
           collapsible
           collapsed={collapsed}
           onCollapse={(collapsed) => {
-            // eslint-disable-next-line no-unused-expressions
             collapsed ? setMarginLeft(80 + 10) : setMarginLeft(200 + 10);
             setCollapsed(collapsed);
           }}
