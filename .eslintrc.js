@@ -15,5 +15,6 @@ module.exports = {
     'no-unused-vars': ['off'],
     'no-console': ['off'],
     'object-shorthand': ['off'],
+    'no-unused-expressions': ['off'],
   },
 };
