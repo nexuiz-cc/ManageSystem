@@ -6,7 +6,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-shadow */
 /* eslint-disable no-useless-escape */
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import {
@@ -84,9 +84,7 @@ const ProductList = ({ tableData, dispatch }) => {
       close,
     }) => (
       <div
-        style={{
-          padding: 8,
-        }}
+        className="searchdiv"
         onKeyDown={(e) => e.stopPropagation()}
       >
         <Input
@@ -97,7 +95,8 @@ const ProductList = ({ tableData, dispatch }) => {
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
-            display: 'block',
+            display: 'flex',
+            justifyContent: 'right',
           }}
         />
         <Space>
@@ -180,7 +179,6 @@ const ProductList = ({ tableData, dispatch }) => {
       dataIndex: 'name',
       key: 'name',
       width: '14%',
-
       ...getColumnSearchProps('name'),
     },
     {
@@ -206,7 +204,6 @@ const ProductList = ({ tableData, dispatch }) => {
       key: 'address',
       ...getColumnSearchProps('address'),
       width: '20%',
-
     },
     {
       title: 'Actions',
@@ -250,7 +247,6 @@ const ProductList = ({ tableData, dispatch }) => {
         columns={columns}
         rowKey={(record) => record.id}
         size="small"
-
       />
       <Modal
         open={isModalOpen}

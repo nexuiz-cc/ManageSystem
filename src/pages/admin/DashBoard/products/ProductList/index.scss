@@ -20,6 +20,16 @@
 .okbtn {
   display: none;
 }
+.searchdiv{
+  padding: 8px;
+  width: 300px;
+  
+}
+
+.ant-table-filter-dropdown{
+  position: relative;
+  left: 320px;
+}
 
 @mixin cancel($top, $right) {
   display: flex;
@@ -122,9 +132,9 @@ div.gry {
 }
 
 .addbtn {
-  display: flex;
   margin-bottom: 15px;
   background-color: #f86f03;
+  font-size: 16px;
 }
 .addbtn:hover {
   background-color: #ffa41b !important;
