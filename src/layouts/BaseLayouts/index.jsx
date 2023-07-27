@@ -6,7 +6,7 @@ import './index.scss';
 import React, { useState } from 'react';
 import { DownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
 import {
-  Breadcrumb, Layout, Menu, Dropdown, Button,
+  Breadcrumb, Col, Layout, Menu, Row, Dropdown, Space, Avatar, Button,
 } from 'antd';
 import { setToKen } from '../../utils/localStorage';
 import { adminRoutes } from '../../routes/routes';
@@ -87,24 +87,29 @@ const BaseLayouts = (props) => {
   const onMenuSelect = ({ keyPath }) => {
     navigate(`/${keyPath.reverse().join('/')}`);
   };
-  const item = [
-    {
-      key: '1',
-      label: (
-        <Link to="/admin/notices">
-          通知中心
-        </Link>
-      ),
-    },
-    {
-      key: '2',
-      label: (
-        <Link to="/login">
-          Logout
-        </Link>
-      ),
-    },
-  ];
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: 'admin/notices',
+          label: '通知中心',
+          icon: <SmileOutlined />,
+        },
+        {
+          key: 'login',
+          danger: true,
+          label: '退出登录',
+          icon: <SmileOutlined />,
+        },
+      ]}
+      onClick={({ key, keyPath }) => {
+        if (key === 'login') {
+          setToKen('');
+        }
+        onMenuSelect({ keyPath });
+      }}
+    />
+  );
 
   return (
     <Layout style={{ paddingTop: 74 }}>
@@ -117,15 +122,20 @@ const BaseLayouts = (props) => {
           top: 0,
         }}
       >
-        <Dropdown
-          menu={{ item }}
-          placement="topRight"
-        >
-          <div>
-            <Button>bottom</Button>
-          </div>
-
-        </Dropdown>
+        <Row>
+          <Col flex={10}>
+            <img
+              className="logo"
+              alt="logo"
+              src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+            />
+          </Col>
+          <Col>
+            <Dropdown menu={menu}>
+              <div><Button>Button</Button></div>
+            </Dropdown>
+          </Col>
+        </Row>
       </Header>
       <Layout style={{ marginLeft }}>
         <Sider
@@ -185,7 +195,6 @@ const BaseLayouts = (props) => {
         </Layout>
       </Layout>
     </Layout>
-
   );
 };
 
