@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable prefer-const */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
@@ -13,60 +15,60 @@ import {
 } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Highlighter from 'react-highlight-words';
-import './index.scss';
 import 'animate.css';
+import './index.scss';
 
 const Notices = () => {
   const [data, setData] = useState([
     {
       id: 0,
       title: 'title0',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 0.',
     },
     {
       id: 1,
       title: 'title1',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 1.',
     },
     {
       id: 2,
       title: 'title2',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 2.',
     },
     {
       id: 3,
       title: 'title3',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 3.',
     },
     {
       id: 4,
       title: 'title4',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 4.',
     },
     {
       id: 5,
       title: 'title5',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 5.',
     },
     {
       id: 6,
       title: 'title6',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 6.',
     },
     {
       id: 7,
       title: 'title7',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 7.',
     },
     {
       id: 8,
       title: 'title8',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 8.',
     },
     {
       id: 9,
       title: 'title9',
-      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+      msg: 'This is a test massage. id is 9.',
     },
 
   ]);
@@ -87,8 +89,8 @@ const Notices = () => {
   const remove2 = (obj) => {
     let { id } = obj;
     let el = document.getElementsByClassName('ant-table-row ant-table-row-level-0');
-    el[id].style.color = '#454545';
-    el[id].style.backgroundColor = '#9BA4B5';
+    el[id].style.color = '#454544';
+    el[id].style.backgroundColor = '#bfbfbd';
   };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -219,6 +221,19 @@ const Notices = () => {
       key: 'msg',
       width: '15%',
       ...getColumnSearchProps('msg'),
+      render: (value, record) => {
+        let { id } = record;
+        return (
+          <a
+            id={id}
+            onClick={(e) => {
+              console.log(id);
+            }}
+          >
+            {record.msg}
+          </a>
+        );
+      },
     },
     {
       title: 'Actions',

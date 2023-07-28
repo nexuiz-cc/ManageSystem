@@ -1,8 +1,10 @@
 .ant-table-content {
   background-color: #ecf9ff;
 }
+
 :where(.css-dev-only-do-not-override-1m62vyb).ant-table-wrapper .ant-table-tbody > tr.ant-table-row:hover > th,
 :where(.css-dev-only-do-not-override-1m62vyb).ant-table-wrapper .ant-table-tbody > tr.ant-table-row:hover > td,
 :where(.css-dev-only-do-not-override-1m62vyb).ant-table-wrapper .ant-table-tbody > tr > th.ant-table-cell-row-hover,
 :where(.css-dev-only-do-not-override-1m62vyb).ant-table-wrapper .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+  background: none;
 }
