@@ -75,7 +75,7 @@ const Notices = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
-  const remove = (obj, index) => {
+  const remove1 = (obj) => {
     let { id } = obj;
     const tmpArr = [...data];
     let el = document.getElementsByClassName('ant-table-row ant-table-row-level-0');
@@ -83,6 +83,12 @@ const Notices = () => {
     setTimeout(() => {
       el[id].style.display = 'none';
     }, 500);
+  };
+  const remove2 = (obj) => {
+    let { id } = obj;
+    let el = document.getElementsByClassName('ant-table-row ant-table-row-level-0');
+    el[id].style.color = '#454545';
+    el[id].style.backgroundColor = '#9BA4B5';
   };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -222,9 +228,15 @@ const Notices = () => {
           <Button
             type="primary"
             danger
-            onClick={() => remove(index, record.id)}
+            onClick={() => remove1(index, record.id)}
           >
             已读 1
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => remove2(index, record.id)}
+          >
+            已读 2
           </Button>
         </Space>
       ),
