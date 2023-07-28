@@ -1,62 +1,199 @@
-import './index.scss';
+/* eslint-disable prefer-const */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-shadow */
+/* eslint-disable no-useless-escape */
+import React, { useRef, useState } from 'react';
+import { SearchOutlined } from '@ant-design/icons';
 import {
-  Button, Card, List, Avatar,
+  Button, Input, Space, Table, Form, Modal,
 } from 'antd';
-import React, { useState } from 'react';
-import pubsub from 'pubsub-js';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Highlighter from 'react-highlight-words';
+import './index.scss';
 
-const Notices = (props) => {
-  const [noticesCount, setNoticesCount] = useState(4);
-  const data = [
+const Notices = () => {
+  const [data, setData] = useState([
     {
-      title: 'Ant Design Title 1',
+      title: 'title1',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
     {
-      title: 'Ant Design Title 2',
+      title: 'title2',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
     {
-      title: 'Ant Design Title 3',
+      title: 'title3',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
     {
-      title: 'Ant Design Title 4',
+      title: 'title4',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
-  ];
 
-  const checkNotices = (val) => {
-    if (val === 'clear') {
-      setNoticesCount(0);
-      // 发布
-      pubsub.publish('is-has-notices', 0);
-    } else {
-      setNoticesCount(noticesCount - val);
-      // 发布
-      pubsub.publish('is-has-notices', noticesCount - val);
-    }
+  ]);
+  // eslint-disable-next-line prefer-const
+  let id = 2;
+  const [form] = Form.useForm();
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const remove = (index, id) => {
+    // id 操作数据库 ajax
+    const tmpArr = [...data];
+    tmpArr.splice(index, 1);
+    setData(tmpArr);
+  };
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
   };
 
-  return (
-    <Card
-      title="通知中心"
-      bordered={false}
-      extra={<Button onClick={() => checkNotices('clear')}>全部已读</Button>}
-    >
-      <List
-        itemLayout="horizontal"
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item
-            actions={[<Button onClick={() => checkNotices(1)}>已读</Button>]}
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+      close,
+    }) => (
+      <div
+        className="searchdiv"
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'flex',
+            justifyContent: 'right',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
           >
-            <List.Item.Meta
-              avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={<a href="https://ant.design">{item.title}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            />
-          </List.Item>
-        )}
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
       />
-    </Card>
+    ),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase()
+      .includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) => (searchedColumn === dataIndex ? (
+      <Highlighter
+        highlightStyle={{
+          backgroundColor: '#ffc069',
+          padding: 0,
+        }}
+        searchWords={[searchText]}
+        autoEscape
+        textToHighlight={text ? text.toString() : ''}
+      />
+    ) : (
+      text
+    )),
+  });
+  const columns = [
+    {
+      title: 'Title',
+      dataIndex: 'title',
+      key: 'title',
+      width: '14%',
+      ...getColumnSearchProps('title'),
+    },
+    {
+      title: 'Message',
+      dataIndex: 'msg',
+      key: 'msg',
+      width: '15%',
+      ...getColumnSearchProps('msg'),
+    },
+    {
+      title: 'Actions',
+      align: 'center',
+      render: (record, index) => (
+        <Space>
+          <Button
+            type="primary"
+            danger
+            onClick={() => remove(index, record.id)}
+          >
+            已读 1
+          </Button>
+        </Space>
+      ),
+      width: '25%',
+    },
+  ];
+  return (
+    <Table
+      dataSource={[...data]}
+      columns={columns}
+      rowKey={(record) => record.id}
+      size="small"
+    />
   );
 };
-
 export default Notices;

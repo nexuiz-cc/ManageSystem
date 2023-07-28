@@ -1,14 +1,23 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-tabs */
 /* eslint-disable consistent-return */
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import './index.scss';
-import React, { useState } from 'react';
 import { DownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
+
 import {
-  Breadcrumb, Col, Layout, Menu, Row, Dropdown, Space, Avatar, Button,
+  Breadcrumb,
+  Col,
+  Layout,
+  Menu,
+  Badge,
+  Row,
+  Dropdown,
+  Space,
+  Avatar,
 } from 'antd';
-import { setToKen } from '../../utils/localStorage';
+import React, { useState, useEffect } from 'react';
+import pubsub from 'pubsub-js';
 import { adminRoutes } from '../../routes/routes';
 
 const {
@@ -65,7 +74,11 @@ const items = getRoutes(adminRoutes);
 
 // 生成根部菜单的keys数据
 
-const rootSubmenuKeys = items.filter((item) => typeof item !== 'undefined').map((item) => item.key);
+// const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
+const rootSubmenuKeys = items
+  .filter((item) => typeof item !== 'undefined')
+  .map((item) => item.key);
+// const rootSubmenuKeys = ["admin/xxx", "sub2", "sub4"];
 
 const BaseLayouts = (props) => {
   const [collapsed, setCollapsed] = useState(false); // 收起菜单状态
@@ -73,6 +86,15 @@ const BaseLayouts = (props) => {
 
   const [openKeys, setOpenKeys] = useState([]); // 当前展开的 SubMenu 菜单项 key 数组	string[]
 
+  const [noticesCount, setNoticesCount] = useState(0);
+
+  useEffect(() => {
+    // 读取未读数据
+    setNoticesCount(4);
+
+    // 订阅
+    pubsub.subscribe('is-has-notices', (msg, data) => setNoticesCount(data));
+  }, []);
   const navigate = useNavigate();
   // 控制一次展开一个菜单
   const onOpenChange = (keys) => {
@@ -83,8 +105,11 @@ const BaseLayouts = (props) => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
+
   // 跳转
   const onMenuSelect = ({ keyPath }) => {
+    // console.log(keyPath); //['b-2-2', 'b-2', 'admin/b'] => /admin/b/b-2/b-2-2
+    // console.log("/" + keyPath.reverse().join("/"));
     navigate(`/${keyPath.reverse().join('/')}`);
   };
   const menu = (
@@ -104,7 +129,7 @@ const BaseLayouts = (props) => {
       ]}
       onClick={({ key, keyPath }) => {
         if (key === 'login') {
-          setToKen('');
+          // 清除token
         }
         onMenuSelect({ keyPath });
       }}
@@ -116,10 +141,7 @@ const BaseLayouts = (props) => {
       <Header
         className="header"
         style={{
-          position: 'fixed',
-          zIndex: 1,
-          width: '100%',
-          top: 0,
+          position: 'fixed', zIndex: 1, width: '100%', top: 0,
         }}
       >
         <Row>
@@ -131,8 +153,21 @@ const BaseLayouts = (props) => {
             />
           </Col>
           <Col>
-            <Dropdown menu={menu}>
-              <div><Button>Button</Button></div>
+            <Dropdown overlay={menu}>
+              <a href="#user" onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <Badge count={noticesCount}>
+                    <Avatar
+                      style={{
+                        backgroundColor: '#1da57a',
+                      }}
+                      icon={<UserOutlined />}
+                    />
+                  </Badge>
+                  <span style={{ color: '#fff' }}>管理员</span>
+                  <DownOutlined />
+                </Space>
+              </a>
             </Dropdown>
           </Col>
         </Row>
@@ -167,20 +202,17 @@ const BaseLayouts = (props) => {
         <Layout
           style={{
             padding: '0 24px 24px',
-            background: 'lightgray',
           }}
         >
           <Breadcrumb
-            className="Breadcrumb"
-            items={[
-              {
-                title: <Link to="/admin/dashboard">DashBoard</Link>,
-              },
-              {
-                title: <Link to="/admin/product-list">ProductList</Link>,
-              },
-            ]}
-          />
+            style={{
+              margin: '16px 0',
+            }}
+          >
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>List</Breadcrumb.Item>
+            <Breadcrumb.Item>App</Breadcrumb.Item>
+          </Breadcrumb>
           <Content
             className="site-layout-background"
             style={{
@@ -191,7 +223,7 @@ const BaseLayouts = (props) => {
           >
             <Outlet />
           </Content>
-          <Footer style={{ background: 'lightgray' }}>footer</Footer>
+          <Footer>footer</Footer>
         </Layout>
       </Layout>
     </Layout>
