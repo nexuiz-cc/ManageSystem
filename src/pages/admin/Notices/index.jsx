@@ -14,38 +14,75 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Highlighter from 'react-highlight-words';
 import './index.scss';
+import 'animate.css';
 
 const Notices = () => {
   const [data, setData] = useState([
     {
+      id: 0,
+      title: 'title0',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+    },
+    {
+      id: 1,
       title: 'title1',
       msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
     {
+      id: 2,
       title: 'title2',
       msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
     {
+      id: 3,
       title: 'title3',
       msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
     {
+      id: 4,
       title: 'title4',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+    },
+    {
+      id: 5,
+      title: 'title5',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+    },
+    {
+      id: 6,
+      title: 'title6',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+    },
+    {
+      id: 7,
+      title: 'title7',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+    },
+    {
+      id: 8,
+      title: 'title8',
+      msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
+    },
+    {
+      id: 9,
+      title: 'title9',
       msg: 'eslint-disable-next-line import/no-extraneous-dependencies',
     },
 
   ]);
   // eslint-disable-next-line prefer-const
   let id = 2;
-  const [form] = Form.useForm();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
-  const remove = (index, id) => {
-    // id 操作数据库 ajax
+  const remove = (id, index) => {
     const tmpArr = [...data];
-    tmpArr.splice(index, 1);
-    setData(tmpArr);
+    let el = document.getElementsByClassName('ant-table-row ant-table-row-level-0');
+    el[id].setAttribute('class', 'ant-table-row ant-table-row-level-0 animate__animated animate__zoomOut');
+    setTimeout(() => {
+      tmpArr.splice(index, 0);
+      setData(tmpArr);
+    }, 500);
   };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -157,6 +194,13 @@ const Notices = () => {
   });
   const columns = [
     {
+      title: 'id',
+      dataIndex: 'id',
+      key: 'id',
+      width: '14%',
+      ...getColumnSearchProps('id'),
+    },
+    {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
@@ -191,6 +235,7 @@ const Notices = () => {
     <Table
       dataSource={[...data]}
       columns={columns}
+      rowClassName="a"
       rowKey={(record) => record.id}
       size="small"
     />
