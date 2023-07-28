@@ -75,13 +75,13 @@ const Notices = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
-  const remove = (id, index) => {
+  const remove = (obj, index) => {
+    let { id } = obj;
     const tmpArr = [...data];
     let el = document.getElementsByClassName('ant-table-row ant-table-row-level-0');
     el[id].setAttribute('class', 'ant-table-row ant-table-row-level-0 animate__animated animate__zoomOut');
     setTimeout(() => {
-      tmpArr.splice(index, 0);
-      setData(tmpArr);
+      el[id].style.display = 'none';
     }, 500);
   };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
